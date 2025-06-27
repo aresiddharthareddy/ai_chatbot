@@ -5,6 +5,7 @@ from .nlp.intent_detection import detect_intent
 from .models import Ticket, Department, UserQuery
 from .serializers import TicketSerializer, DepartmentSerializer, UserQuerySerializer
 import google.generativeai as genai
+
 from django.db import connection
 
 class ChatbotViewSet(viewsets.ViewSet):

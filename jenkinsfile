@@ -1,0 +1,38 @@
+pipeline{
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    docker.build('chatbot_project')
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    docker.image('chatbot_project').inside {
+                        sh 'python manage.py test'
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Deployment logic here
+                    echo 'Deploying chatbot project...'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up...'
+        }
+    }
+}
